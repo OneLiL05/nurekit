@@ -5,9 +5,11 @@ import {
 	IGroup,
 	IAuditory,
 	ISchedule,
+	IRawSchedule,
 } from "../types/index.js";
 import { axiosClient } from "../libs/axios.js";
 import { handleAxiosError } from "../helpers/axios.helper.js";
+import { transformSchedule } from "../helpers/schedule.helper.js";
 
 interface GetScheduleParams {
 	groupName: string;
@@ -42,15 +44,19 @@ export class Nurekit {
 		groupName,
 		startTime,
 		endTime,
-	}: GetScheduleParams): Promise<ISchedule> {
+	}: GetScheduleParams): Promise<ISchedule[]> {
 		const { id: groupId } = await this.#getGroup(groupName.toUpperCase());
 
-		return axiosClient
-			.get<ISchedule>(
+		const rawSchedule = await axiosClient
+			.get<IRawSchedule[]>(
 				`/api/schedule?type=group&id=${groupId}&start_time=${startTime}&end_time=${endTime}`,
 			)
 			.then((res) => res.data)
 			.catch(handleAxiosError);
+
+		const result = transformSchedule(rawSchedule);
+
+		return result;
 	}
 
 	async #getGroup(name: string): Promise<IGroup> {

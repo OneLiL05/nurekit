@@ -23,7 +23,7 @@ interface ISubject {
 	title: string;
 }
 
-interface ISchedule {
+interface IRawSchedule {
 	id: number;
 	start_time: number;
 	end_time: number;
@@ -36,4 +36,23 @@ interface ISchedule {
 	subject: ISubject;
 }
 
-export type { IRawTeacher, ITeacher, IGroup, IAuditory, ISubject, ISchedule };
+interface ISchedule
+	extends Omit<
+		IRawSchedule,
+		"start_time" | "end_time" | "number_pair" | "teachers"
+	> {
+	startTime: number;
+	endTime: number;
+	numberPair: number;
+	teachers: ITeacher[];
+}
+
+export type {
+	IRawTeacher,
+	ITeacher,
+	IGroup,
+	IAuditory,
+	ISubject,
+	IRawSchedule,
+	ISchedule,
+};
