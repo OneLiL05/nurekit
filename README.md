@@ -128,10 +128,10 @@ const schedule = await nurekit.getSchedule({
 ```ts
 {
   id: number;
-  start_time: number;
-  end_time: number;
+  startTime: number;
+  endTime: number;
   auditory: number;
-  number_pair: number;
+  numberPair: number;
   type: string;
   updatedAt: Date;
   groups: {
@@ -148,7 +148,7 @@ const schedule = await nurekit.getSchedule({
     brief: string;
     title: string;
   };
-}
+}[]
 ```
 
 ## Stay in touch
