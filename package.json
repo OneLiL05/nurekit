@@ -10,6 +10,7 @@
   "type": "module",
   "license": "MIT",
   "author": "Kyrylo Savieliev",
+  "repository": "https://github.com/OneLiL05/nurekit",
   "exports": {
     "types": "./dist/index.d.ts",
     "default": "./dist/index.js"
