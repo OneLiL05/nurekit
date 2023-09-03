@@ -41,7 +41,7 @@ const auditories = await nurekit.getAuditories()
 {
   id: number;
   name: string;
-}
+}[]
 ```
 
 ### `getGroups`
@@ -64,7 +64,7 @@ const groups = await nurekit.getGroups()
 {
   id: number;
   name: string;
-}
+}[]
 ```
 
 ### `getTeachers`
@@ -88,7 +88,7 @@ const teachers = await nurekit.getTeachers()
   id: number;
   fullName: string;
   shortName: string;
-}
+}[]
 ```
 
 ### `getSchedule`
@@ -102,7 +102,7 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
-const teachers = await nurekit.getSchedule({
+const schedule = await nurekit.getSchedule({
   groupName: "пзпі-23-5",
   startTime: 1693170000,
   endTime: 1694811599,
