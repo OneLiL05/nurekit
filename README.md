@@ -11,13 +11,17 @@ JavaScript library for Nure API
 npm i @nurejs/api
 ```
 
-### Usage
+## Usage
 
 ```js
 import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 ```
+
+## Contributing
+
+If you want to contribute to improving the project, firstly read [CONTIRBUTING.md](https://github.com/OneLiL05/nurekit/blob/main/CONTIRBUTING.md)
 
 ## Methods
 
@@ -146,3 +150,11 @@ const schedule = await nurekit.getSchedule({
   };
 }
 ```
+
+## Stay in touch
+
+- Author - [Kyrylo Savieliev](https://github.com/OneLiL05)
+
+## Licence
+
+Nurekit is [GNU GPLv3.0 licenced](https://github.com/OneLiL05/nurekit/blob/main/LICENSE)
