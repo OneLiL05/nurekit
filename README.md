@@ -122,25 +122,27 @@ const teachers = await nurekit.getSchedule({
 **Output:**
 
 ```ts
-id: number;
-start_time: number;
-end_time: number;
-auditory: number;
-number_pair: number;
-type: string;
-updatedAt: Date;
-groups: {
+{
   id: number;
-  name: string;
-}[];
-teachers: {
-  id: number;
-  fullName: string;
-  shortName: string;
-};
-subject: {
-  id: number;
-  brief: string;
-  title: string;
-};
+  start_time: number;
+  end_time: number;
+  auditory: number;
+  number_pair: number;
+  type: string;
+  updatedAt: Date;
+  groups: {
+    id: number;
+    name: string;
+  }[];
+  teachers: {
+    id: number;
+    fullName: string;
+    shortName: string;
+  }[];
+  subject: {
+    id: number;
+    brief: string;
+    title: string;
+  };
+}
 ```
