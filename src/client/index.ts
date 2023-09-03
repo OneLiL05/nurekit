@@ -7,6 +7,7 @@ import {
 	ISchedule,
 } from "../types/index.js";
 import { axiosClient } from "../libs/axios.js";
+import { handleAxiosError } from "../helpers/axios.helper.js";
 
 interface GetScheduleParams {
 	groupName: string;
@@ -18,7 +19,8 @@ export class Nurekit {
 	public async getTeachers(): Promise<ITeacher[]> {
 		const rawTeachers = await axiosClient
 			.get<IRawTeacher[]>("/api/teachers")
-			.then((res) => res.data);
+			.then((res) => res.data)
+			.catch(handleAxiosError);
 
 		const result = transformTeachers(rawTeachers);
 
@@ -32,7 +34,8 @@ export class Nurekit {
 	public async getAuditories(): Promise<IAuditory[]> {
 		return axiosClient
 			.get<IAuditory[]>("/api/auditories")
-			.then((res) => res.data);
+			.then((res) => res.data)
+			.catch(handleAxiosError);
 	}
 
 	public async getSchedule({
@@ -46,7 +49,8 @@ export class Nurekit {
 			.get<ISchedule>(
 				`/api/schedule?type=group&id=${groupId}&start_time=${startTime}&end_time=${endTime}`,
 			)
-			.then((res) => res.data);
+			.then((res) => res.data)
+			.catch(handleAxiosError);
 	}
 
 	async #getGroup(name: string): Promise<IGroup> {
