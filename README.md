@@ -25,7 +25,7 @@ If you want to contribute to improving the project, firstly read [CONTIRBUTING.m
 
 ## Methods
 
-### `getAuditoriums`
+### Get auditoriums
 
 [Reference](https://nure-dev.pp.ua/#%D0%B7%D0%B0%D0%BF%D0%B8%D1%82-%D0%BD%D0%B0-%D0%B0%D1%83%D0%B4%D0%B8%D1%82%D0%BE%D1%80%D1%96%D1%97)
 
@@ -36,7 +36,7 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
-const auditories = await nurekit.getAuditoriums()
+const auditories = await nurekit.auditoriums.findMany()
 ```
 
 **Output:**
@@ -48,7 +48,34 @@ const auditories = await nurekit.getAuditoriums()
 }[]
 ```
 
-### `getGroups`
+### Get auditorium
+
+```js
+import { Nurekit } from "@nurejs/api"
+
+const nurekit = new Nurekit()
+
+const auditories = await nurekit.auditoriums.findOne({ name: "285" })
+```
+
+**Input:**
+
+```ts
+{
+  name: string
+}
+```
+
+**Output:**
+
+```ts
+{
+  id: number;
+  name: string;
+}
+```
+
+### Get groups
 
 [Reference](https://nure-dev.pp.ua/#%D0%B7%D0%B0%D0%BF%D0%B8%D1%82-%D0%BD%D0%B0-%D0%B3%D1%80%D1%83%D0%BF%D0%B8)
 
@@ -59,7 +86,7 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
-const groups = await nurekit.getGroups()
+const groups = await nurekit.groups.findMany()
 ```
 
 **Output:**
@@ -71,7 +98,36 @@ const groups = await nurekit.getGroups()
 }[]
 ```
 
-### `getTeachers`
+### Get a group
+
+**Example:**
+
+```js
+import { Nurekit } from "@nurejs/api"
+
+const nurekit = new Nurekit()
+
+const groups = await nurekit.groups.findOne({ name: "пзпі-23-5" })
+```
+
+**Input:**
+
+```ts
+{
+  name: string
+}
+```
+
+**Output:**
+
+```ts
+{
+  id: number;
+  name: string;
+}
+```
+
+### Get teachers
 
 [Reference](https://nure-dev.pp.ua/#%D0%B7%D0%B0%D0%BF%D0%B8%D1%82-%D0%BD%D0%B0-%D0%B2%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%B0%D1%87%D1%96%D0%B2)
 
@@ -82,7 +138,7 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
-const teachers = await nurekit.getTeachers()
+const teachers = await nurekit.teachers.findMany()
 ```
 
 **Output:**
@@ -95,7 +151,39 @@ const teachers = await nurekit.getTeachers()
 }[]
 ```
 
-### `getSchedule`
+### Get teacher
+
+[Reference](https://nure-dev.pp.ua/#%D0%B7%D0%B0%D0%BF%D0%B8%D1%82-%D0%BD%D0%B0-%D0%B2%D0%B8%D0%BA%D0%BB%D0%B0%D0%B4%D0%B0%D1%87%D1%96%D0%B2)
+
+**Example:**
+
+```js
+import { Nurekit } from "@nurejs/api"
+
+const nurekit = new Nurekit()
+
+const teachers = await nurekit.teachers.findOne({ shortName: "Боцюра О. А." })
+```
+
+**Input:**
+
+```ts
+{
+  shortName: string;
+}
+```
+
+**Output:**
+
+```ts
+{
+  id: number;
+  fullName: string;
+  shortName: string;
+}
+```
+
+### Get schedule
 
 [Reference](https://nure-dev.pp.ua/#%D0%B7%D0%B0%D0%BF%D0%B8%D1%82-%D0%BD%D0%B0-%D1%80%D0%BE%D0%B7%D0%BA%D0%BB%D0%B0%D0%B4)
 
@@ -106,7 +194,7 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
-const schedule = await nurekit.getSchedule({
+const schedule = await nurekit.groups.getSchedule({
   groupName: "пзпі-23-5",
   startTime: 1693170000,
   endTime: 1694811599,
