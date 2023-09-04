@@ -15,7 +15,7 @@ interface IGroup {
 	name: string;
 }
 
-interface IAuditory extends IGroup {}
+interface IAuditorium extends IGroup {}
 
 interface ISubject {
 	id: number;
@@ -27,7 +27,7 @@ interface IRawSchedule {
 	id: number;
 	start_time: number;
 	end_time: number;
-	auditory: number;
+	auditory: string;
 	number_pair: number;
 	type: string;
 	updatedAt: Date;
@@ -39,19 +39,20 @@ interface IRawSchedule {
 interface ISchedule
 	extends Omit<
 		IRawSchedule,
-		"start_time" | "end_time" | "number_pair" | "teachers"
+		"start_time" | "end_time" | "number_pair" | "teachers" | "auditory"
 	> {
 	startTime: number;
 	endTime: number;
 	numberPair: number;
 	teachers: ITeacher[];
+	auditorium: string;
 }
 
 export type {
 	IRawTeacher,
 	ITeacher,
 	IGroup,
-	IAuditory,
+	IAuditorium,
 	ISubject,
 	IRawSchedule,
 	ISchedule,

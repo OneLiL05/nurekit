@@ -3,7 +3,7 @@ import {
 	ITeacher,
 	IRawTeacher,
 	IGroup,
-	IAuditory,
+	IAuditorium,
 	ISchedule,
 	IRawSchedule,
 } from "../types/index.js";
@@ -33,9 +33,9 @@ export class Nurekit {
 		return axiosClient.get<IGroup[]>("/api/groups").then((res) => res.data);
 	}
 
-	public async getAuditories(): Promise<IAuditory[]> {
+	public async getAuditoriums(): Promise<IAuditorium[]> {
 		return axiosClient
-			.get<IAuditory[]>("/api/auditories")
+			.get<IAuditorium[]>("/api/auditories")
 			.then((res) => res.data)
 			.catch(handleAxiosError);
 	}
