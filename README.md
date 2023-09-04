@@ -130,7 +130,7 @@ const schedule = await nurekit.getSchedule({
   id: number;
   startTime: number;
   endTime: number;
-  auditorium: number;
+  auditorium: string;
   numberPair: number;
   type: string;
   updatedAt: Date;

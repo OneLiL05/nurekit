@@ -27,7 +27,7 @@ interface IRawSchedule {
 	id: number;
 	start_time: number;
 	end_time: number;
-	auditory: number;
+	auditory: string;
 	number_pair: number;
 	type: string;
 	updatedAt: Date;
@@ -45,7 +45,7 @@ interface ISchedule
 	endTime: number;
 	numberPair: number;
 	teachers: ITeacher[];
-	auditorium: number;
+	auditorium: string;
 }
 
 export type {
