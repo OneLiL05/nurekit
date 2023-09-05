@@ -3,10 +3,6 @@ import { transformTeachers } from "../helpers/teachers.helper.js";
 import { axiosClient } from "../libs/axios.js";
 import { IRawTeacher, ITeacher } from "../types/index.js";
 
-interface FindOneParams {
-	shortName: string;
-}
-
 export class TeachersModule {
 	/**
 	 * Method returns array of objects with such fields:
@@ -50,7 +46,7 @@ export class TeachersModule {
 	 *
 	 * Example usage:
 	 * ```typescript
-	 const teacher = await nurekit.teachers.findOne({ shortName: "Боцюра О. А." })
+	 const teacher = await nurekit.teachers.findOne("Боцюра О. А.")
 	 * ```
 	 *
 	 * @param shortName short name of teacher you want to get info about
@@ -59,7 +55,7 @@ export class TeachersModule {
 	 *
 	 * @publicApi
 	 */
-	public async findOne({ shortName }: FindOneParams): Promise<ITeacher> {
+	public async findOne(shortName: string): Promise<ITeacher> {
 		const teachers = await this.findMany();
 
 		const teacher = teachers.find((teacher) => {

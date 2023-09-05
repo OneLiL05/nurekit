@@ -2,10 +2,6 @@ import { handleAxiosError } from "../helpers/axios.helper.js";
 import { axiosClient } from "../libs/axios.js";
 import { IAuditorium } from "../types/index.js";
 
-interface FindOneParams {
-	name: string;
-}
-
 export class AuditoriumsModule {
 	/**
 	 * Method returns array of objects with such fields:
@@ -52,7 +48,7 @@ export class AuditoriumsModule {
 	 *
 	 * @publicApi
 	 */
-	public async findOne({ name }: FindOneParams): Promise<IAuditorium> {
+	public async findOne(name: string): Promise<IAuditorium> {
 		const auditoriums = await this.findMany();
 
 		const auditorium = auditoriums.find(

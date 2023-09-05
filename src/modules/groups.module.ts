@@ -4,10 +4,6 @@ import { transformSchedule } from "../helpers/schedule.helper.js";
 import { IGroup, IRawSchedule, ISchedule } from "../index.js";
 import { axiosClient } from "../libs/axios.js";
 
-interface FindOneParams {
-	name: string;
-}
-
 interface GetScheduleParams {
 	groupName: string;
 	startTime: string;
@@ -51,7 +47,7 @@ export class GroupsModule {
 	 *
 	 * Example usage:
 	 * ```typescript
-	 const group = await nurekit.groups.findOne({ name: "пзпі-23-5" })
+	 const group = await nurekit.groups.findOne("пзпі-23-5")
 	 * ```
 	 *
 	 * @param name name of group you want to get info about
@@ -60,7 +56,7 @@ export class GroupsModule {
 	 *
 	 * @publicApi
 	 */
-	public async findOne({ name }: FindOneParams): Promise<IGroup> {
+	public async findOne(name: string): Promise<IGroup> {
 		const groups = await this.findMany();
 
 		const group = groups.find((group) => group.name === name.toUpperCase());
@@ -75,10 +71,29 @@ export class GroupsModule {
 	/**
 	 * Method returns schedule:
 	 * ```typescript
-	 * {
-	 *   id: number;
-	 *   name: string;
-	 * }
+	 *{
+	 *  id: number;
+	 *  startTime: number;
+	 *  endTime: number;
+	 *  auditorium: string;
+	 *  numberPair: number;
+	 *  type: string;
+	 *  updatedAt: Date;
+	 *  groups: {
+	 *    id: number;
+	 *    name: string;
+	 *  }[];
+	 *  teachers: {
+	 *    id: number;
+	 *    fullName: string;
+	 *    shortName: string;
+	 *  }[];
+	 *  subject: {
+	 *    id: number;
+	 *    brief: string;
+	 *    title: string;
+	 *  };
+	 *}[]
 	 * ```
 	 *
 	 * Example usage:
@@ -103,7 +118,7 @@ export class GroupsModule {
 		startTime,
 		endTime,
 	}: GetScheduleParams): Promise<ISchedule[]> {
-		const { id: groupId } = await this.findOne({ name: groupName });
+		const { id: groupId } = await this.findOne(groupName);
 
 		const startTimestamp = toTimestamp(startTime);
 		const endTimestamp = toTimestamp(endTime);
