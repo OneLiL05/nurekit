@@ -8,7 +8,7 @@
     "js"
   ],
   "type": "module",
-  "license": "MIT",
+  "license": "GNU GPLv3.0",
   "author": "Kyrylo Savieliev",
   "repository": "https://github.com/OneLiL05/nurekit",
   "exports": {
@@ -36,6 +36,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@nurejs/api": "^0.1.10",
     "axios": "^1.5.0",
     "ts-node": "^10.9.1"
   },
