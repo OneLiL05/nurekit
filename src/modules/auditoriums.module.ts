@@ -7,6 +7,24 @@ interface FindOneParams {
 }
 
 export class AuditoriumsModule {
+	/**
+	 * Method returns array of objects with such fields:
+	 * ```typescript
+	 * {
+	 *   id: number;
+	 *   name: string;
+	 * }
+	 * ```
+	 *
+	 * Example usage:
+	 * ```typescript
+	 const auditoriums = await nurekit.auditoriums.findMany()
+	 * ```
+	 *
+	 * @see [Docs](https://github.com/OneLiL05/nurekit#get-auditoriums)
+	 *
+	 * @publicApi
+	 */
 	public async findMany(): Promise<IAuditorium[]> {
 		return axiosClient
 			.get<IAuditorium[]>("/api/auditories")
@@ -14,6 +32,26 @@ export class AuditoriumsModule {
 			.catch(handleAxiosError);
 	}
 
+	/**
+	 * Method returns object with such fields:
+	 * ```typescript
+	 * {
+	 *   id: number;
+	 *   name: string;
+	 * }
+	 * ```
+	 *
+	 * Example usage:
+	 * ```typescript
+	 const auditorium = await nurekit.auditoriums.findOne({ name: "285" })
+	 * ```
+	 *
+	 * @param name name of auditorium you want to get info about
+	 *
+	 * @see [Docs](https://github.com/OneLiL05/nurekit#get-auditorium)
+	 *
+	 * @publicApi
+	 */
 	public async findOne({ name }: FindOneParams): Promise<IAuditorium> {
 		const auditoriums = await this.findMany();
 

@@ -8,6 +8,25 @@ interface FindOneParams {
 }
 
 export class TeachersModule {
+	/**
+	 * Method returns array of objects with such fields:
+	 * ```typescript
+	 * {
+	 *   id: number;
+	 *   fullName: string;
+	 *   shortName: string;
+	 * }
+	 * ```
+	 *
+	 * Example usage:
+	 * ```typescript
+	 const teachers = await nurekit.teachers.findMany()
+	 * ```
+	 *
+	 * @see [Docs](https://github.com/OneLiL05/nurekit#get-teachers)
+	 *
+	 * @publicApi
+	 */
 	public async findMany(): Promise<ITeacher[]> {
 		const rawTeachers = await axiosClient
 			.get<IRawTeacher[]>("/api/teachers")
@@ -19,6 +38,27 @@ export class TeachersModule {
 		return result;
 	}
 
+	/**
+	 * Method returns object with such fields:
+	 * ```typescript
+	 * {
+	 *   id: number;
+	 *   fullName: string;
+	 *   shortName: string;
+	 * }
+	 * ```
+	 *
+	 * Example usage:
+	 * ```typescript
+	 const teacher = await nurekit.teachers.findOne({ shortName: "Боцюра О. А." })
+	 * ```
+	 *
+	 * @param shortName short name of teacher you want to get info about
+	 *
+	 * @see [Docs](https://github.com/OneLiL05/nurekit#get-teachers	)
+	 *
+	 * @publicApi
+	 */
 	public async findOne({ shortName }: FindOneParams): Promise<ITeacher> {
 		const teachers = await this.findMany();
 
