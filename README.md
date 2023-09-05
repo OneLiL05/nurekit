@@ -21,7 +21,7 @@ const nurekit = new Nurekit()
 
 ## Contributing
 
-If you want to contribute to improving the project, firstly read [CONTIRBUTING.md](https://github.com/OneLiL05/nurekit/blob/main/CONTIRBUTING.md)
+If you want to contribute to improving the project, firstly read [CONTIRBUTING.md](https://github.com/OneLiL05/nurekit/blob/main/CONTRIBUTING.md)
 
 ## Methods
 
@@ -55,7 +55,7 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
-const auditories = await nurekit.auditoriums.findOne({ name: "285" })
+const auditories = await nurekit.auditoriums.findOne("285")
 ```
 
 **Input:**
@@ -107,7 +107,7 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
-const groups = await nurekit.groups.findOne({ name: "пзпі-23-5" })
+const groups = await nurekit.groups.findOne("пзпі-23-5")
 ```
 
 **Input:**
@@ -162,15 +162,13 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
-const teachers = await nurekit.teachers.findOne({ shortName: "Боцюра О. А." })
+const teachers = await nurekit.teachers.findOne("Боцюра О. А.")
 ```
 
 **Input:**
 
 ```ts
-{
-  shortName: string;
-}
+shortName: string;
 ```
 
 **Output:**
@@ -196,8 +194,8 @@ const nurekit = new Nurekit()
 
 const schedule = await nurekit.groups.getSchedule({
   groupName: "пзпі-23-5",
-  startTime: 1693170000,
-  endTime: 1694811599,
+  startTime: "2023-09-11",
+  endTime: "2023-09-15",
 });
 ```
 
@@ -206,8 +204,8 @@ const schedule = await nurekit.groups.getSchedule({
 ```ts
 {
   groupName: string,
-  startTime: number,
-  endTime: number,
+  startTime: string,
+  endTime: string,
 }
 ```
 
