@@ -196,8 +196,8 @@ const nurekit = new Nurekit()
 
 const schedule = await nurekit.groups.getSchedule({
   groupName: "пзпі-23-5",
-  startTime: 1693170000,
-  endTime: 1694811599,
+  startTime: "2023-09-11",
+  endTime: "2023-09-15",
 });
 ```
 
@@ -206,8 +206,8 @@ const schedule = await nurekit.groups.getSchedule({
 ```ts
 {
   groupName: string,
-  startTime: number,
-  endTime: number,
+  startTime: string,
+  endTime: string,
 }
 ```
 
