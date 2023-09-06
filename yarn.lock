@@ -104,14 +104,6 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@nurejs/api@^0.1.10":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@nurejs/api/-/api-0.1.10.tgz#ba4fc7266fe055d09d618bda9461bb4210ad6a3b"
-  integrity sha512-5uyPbYPk7JxP2KUpBAsJCJK4UXnE+/iGBwLzeeLHwUu4tNyCPd4rdh7iDuS8A4sV5WWySIuN9XQw5hYIOu9IMw==
-  dependencies:
-    axios "^1.5.0"
-    ts-node "^10.9.1"
-
 "@pkgr/utils@^2.3.1":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@pkgr/utils/-/utils-2.4.2.tgz#9e638bbe9a6a6f165580dc943f138fd3309a2cbc"

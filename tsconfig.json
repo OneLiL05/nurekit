@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
+    "module": "CommonJS",
     "moduleResolution": "NodeNext",
     "target": "ES2022",
     "declaration": true,
