@@ -107,7 +107,7 @@ export class TeachersModule {
 	 *
 	 * Example usage:
 	 * ```typescript
-	 const schedule = await nurekit.auditoriums.getSchedule({
+	 const schedule = await nurekit.teachers.getSchedule({
   	  auditoriumName: "Боцюра О. А.",
   	  startTime: "2023-09-11",
   	  endTime: "2023-09-15",
