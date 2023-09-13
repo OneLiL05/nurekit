@@ -69,7 +69,7 @@ export class TeachersModule {
 		const teachers = await this.findMany();
 
 		const teacher = teachers.find((teacher) => {
-			teacher.shortName === shortName;
+			return teacher.shortName === shortName;
 		});
 
 		if (!teacher) {
@@ -110,13 +110,13 @@ export class TeachersModule {
 	 * Example usage:
 	 * ```typescript
 	 const schedule = await nurekit.teachers.getSchedule({
-  	  auditoriumName: "Боцюра О. А.",
+  	  teacherName: "Боцюра О. А.",
   	  startTime: "2023-09-11",
   	  endTime: "2023-09-15",
 	});
 	 * ```
 	 *
-	 * @param teacherName name of a teacher you want to get schedule for
+	 * @param teacherName short name of a teacher you want to get schedule for
 	 * @param startTime
 	 * @param endTime
 	 *
