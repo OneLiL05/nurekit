@@ -1,5 +1,5 @@
+import { TimestampAdapter } from "../adapters/timestamp.adapter.js";
 import { handleAxiosError } from "../helpers/axios.helper.js";
-import { toTimestamp } from "../helpers/date.helper.js";
 import { transformSchedule } from "../helpers/schedule.helper.js";
 import { IGroup, IRawSchedule, ISchedule } from "../index.js";
 import { axiosClient } from "../libs/axios.js";
@@ -11,6 +11,8 @@ interface GetScheduleParams {
 }
 
 export class GroupsModule {
+	#timestampAdapter = new TimestampAdapter();
+
 	/**
 	 * Method returns array of objects with such fields:
 	 * ```typescript
@@ -120,8 +122,10 @@ export class GroupsModule {
 	}: GetScheduleParams): Promise<ISchedule[]> {
 		const { id: groupId } = await this.findOne(groupName);
 
-		const startTimestamp = toTimestamp(startTime);
-		const endTimestamp = toTimestamp(endTime);
+		const { startTimestamp, endTimestamp } = this.#timestampAdapter.convert({
+			startTime,
+			endTime,
+		});
 
 		const rawSchedule = await axiosClient
 			.get<IRawSchedule[]>(

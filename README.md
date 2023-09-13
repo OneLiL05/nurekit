@@ -3,7 +3,7 @@
 > **Warning**
 > The library is a work in progress still. I'm building it in public
 
-JavaScript library for Nure API
+JavaScript library for Nure API. Based on [nure-cist-api](https://github.com/nure-dev/nure-cist-api).
 
 ## Installation
 
@@ -192,6 +192,22 @@ import { Nurekit } from "@nurejs/api"
 
 const nurekit = new Nurekit()
 
+
+// For auditorium
+const schedule = await nurekit.auditoriums.getSchedule({
+  auditoriumName: "287",
+  startTime: "2023-09-11",
+  endTime: "2023-09-15",
+});
+
+// For teacher
+const schedule = await nurekit.teachers.getSchedule({
+  auditoriumName: "Боцюра О. А.",
+  startTime: "2023-09-11",
+  endTime: "2023-09-15",
+});
+
+// For group
 const schedule = await nurekit.groups.getSchedule({
   groupName: "пзпі-23-5",
   startTime: "2023-09-11",

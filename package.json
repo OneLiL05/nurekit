@@ -1,16 +1,28 @@
 {
   "name": "@nurejs/api",
   "description": "Node.js client for Nure API",
-  "version": "0.1.10",
+  "version": "0.2.1",
   "keywords": [
     "api",
     "nure",
     "js"
   ],
   "type": "module",
-  "license": "MIT",
+  "license": "GNU GPLv3.0",
   "author": "Kyrylo Savieliev",
-  "repository": "https://github.com/OneLiL05/nurekit",
+  "maintainers": [
+    {
+      "name": "Kyrylo Savieliev",
+      "url": "https://github.com/OneLiL05"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:OneLiL05/nurekit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OneLiL05/nurekit/issues"
+  },
   "exports": {
     "types": "./dist/index.d.ts",
     "default": "./dist/index.js"
