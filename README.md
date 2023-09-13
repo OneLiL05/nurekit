@@ -3,7 +3,7 @@
 > **Warning**
 > The library is a work in progress still. I'm building it in public
 
-JavaScript library for Nure API
+JavaScript library for Nure API. Based on [nure-cist-api](https://github.com/nure-dev/nure-cist-api).
 
 ## Installation
 
