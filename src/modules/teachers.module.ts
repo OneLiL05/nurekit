@@ -1,5 +1,5 @@
+import { TimestampAdapter } from "../adapters/timestamp.adapter.js";
 import { handleAxiosError } from "../helpers/axios.helper.js";
-import { toTimestamp } from "../helpers/date.helper.js";
 import { transformSchedule } from "../helpers/schedule.helper.js";
 import { transformTeachers } from "../helpers/teachers.helper.js";
 import { axiosClient } from "../libs/axios.js";
@@ -12,6 +12,8 @@ interface GetScheduleParams {
 }
 
 export class TeachersModule {
+	#timestampAdapter = new TimestampAdapter();
+
 	/**
 	 * Method returns array of objects with such fields:
 	 * ```typescript
@@ -129,8 +131,10 @@ export class TeachersModule {
 	}: GetScheduleParams) {
 		const { id: teacherId } = await this.findOne(teacherName);
 
-		const startTimestamp = toTimestamp(startTime);
-		const endTimestamp = toTimestamp(endTime);
+		const { startTimestamp, endTimestamp } = this.#timestampAdapter.convert({
+			startTime,
+			endTime,
+		});
 
 		const rawSchedule = await axiosClient
 			.get<IRawSchedule[]>(
