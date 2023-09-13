@@ -202,7 +202,7 @@ const schedule = await nurekit.auditoriums.getSchedule({
 
 // For teacher
 const schedule = await nurekit.teachers.getSchedule({
-  auditoriumName: "Боцюра О. А.",
+  teacherName: "Боцюра О. А.",
   startTime: "2023-09-11",
   endTime: "2023-09-15",
 });
@@ -218,6 +218,24 @@ const schedule = await nurekit.groups.getSchedule({
 **Input:**
 
 ```ts
+// For auditorium
+
+{
+  auditoriumName: string,
+  startTime: string,
+  endTime: string,
+}
+
+// For teacher
+
+{
+  teacherName: string,
+  startTime: string,
+  endTime: string,
+}
+
+// For group
+
 {
   groupName: string,
   startTime: string,
