@@ -18,5 +18,6 @@
     "eslint-plugin-prettier": "^5.0.0",
     "prettier": "^3.0.3",
     "turbo": "^1.10.13"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
