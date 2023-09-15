@@ -8,6 +8,7 @@
     "packages/**"
   ],
   "scripts": {
+    "dev": "turbo run dev",
     "build": "turbo run build",
     "format": "turbo run format"
   },
