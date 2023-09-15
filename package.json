@@ -1,55 +1,21 @@
 {
-  "name": "@nurejs/api",
-  "description": "Node.js client for Nure API",
-  "version": "0.2.2",
-  "keywords": [
-    "api",
-    "nure",
-    "js"
-  ],
-  "type": "module",
-  "license": "GNU GPLv3.0",
+  "namespace": "nurejs",
   "author": "Kyrylo Savieliev",
-  "maintainers": [
-    {
-      "name": "Kyrylo Savieliev",
-      "url": "https://github.com/OneLiL05"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:OneLiL05/nurekit.git"
-  },
-  "bugs": {
-    "url": "https://github.com/OneLiL05/nurekit/issues"
-  },
-  "exports": {
-    "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/**",
+    "packages/**"
   ],
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc",
-    "lint": "",
-    "format": "prettier --write ./src"
+    "build": "turbo run build",
+    "format": "turbo run format"
   },
   "devDependencies": {
-    "@types/node": "^20.5.8",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.5.0",
-    "eslint": "^8.48.0",
+    "@turbo/gen": "^1.10.13",
+    "eslint": "^8.49.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "3.0.3",
-    "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "axios": "^1.5.0",
-    "ts-node": "^10.9.1"
-  },
-  "private": false
+    "prettier": "^3.0.3",
+    "turbo": "^1.10.13"
+  }
 }
