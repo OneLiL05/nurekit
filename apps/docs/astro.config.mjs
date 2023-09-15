@@ -5,6 +5,11 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	site: 'https://onelil05.github.io',
   base: '/nurekit',
+	vite: {
+    ssr: {
+      noExternal: ["execa"],
+    },
+  },
 	integrations: [
 		starlight({
 			title: 'Nurekit',
