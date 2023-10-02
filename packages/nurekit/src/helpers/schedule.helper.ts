@@ -1,4 +1,4 @@
-import { IRawSchedule, ISchedule } from "../index.js";
+import { IRawSchedule, ISchedule } from "../types/index.js";
 import { transformTeachers } from "./teachers.helper.js";
 
 export function transformSchedule(rawSchedule: IRawSchedule[]): ISchedule[] {
