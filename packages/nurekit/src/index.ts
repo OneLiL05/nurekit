@@ -1,7 +1,7 @@
 import { Nurekit } from "./client.js";
 
 export * from "./client.js";
-export * from "./types/index.js";
+export { IAuditorium, IGroup, ISchedule, ISubject, ITeacher } from "./types/index.js";
 
 const nurekit = new Nurekit()
 
