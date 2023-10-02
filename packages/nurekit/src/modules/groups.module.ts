@@ -1,7 +1,7 @@
 import { TimestampAdapter } from "../adapters/timestamp.adapter.js";
 import { handleAxiosError } from "../helpers/axios.helper.js";
 import { transformSchedule } from "../helpers/schedule.helper.js";
-import { IGroup, IRawSchedule, ISchedule } from "../index.js";
+import { IGroup, IRawSchedule, ISchedule } from "../types/index.js";
 import { axiosClient } from "../libs/axios.js";
 
 interface GetScheduleParams {
