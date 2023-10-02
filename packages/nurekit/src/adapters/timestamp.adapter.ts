@@ -1,5 +1,3 @@
-import { toTimestamp } from "../helpers/date.helper.js";
-
 interface ConvertParams {
 	startTime: string;
 	endTime: string;
@@ -13,8 +11,14 @@ interface IConvertedTime {
 export class TimestampAdapter {
 	public convert({ startTime, endTime }: ConvertParams): IConvertedTime {
 		return {
-			startTimestamp: toTimestamp(startTime),
-			endTimestamp: toTimestamp(endTime),
+			startTimestamp: this.#toTimestamp(startTime),
+			endTimestamp: this.#toTimestamp(endTime),
 		};
+	}
+
+	#toTimestamp(date: string) {
+		const parsedDate = Date.parse(date);
+
+		return parsedDate / 1000;
 	}
 }
