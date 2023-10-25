@@ -141,7 +141,6 @@ export class TeachersModule {
 				`/api/schedule?type=teacher&id=${teacherId}&start_time=${startTimestamp}&end_time=${endTimestamp}`,
 			)
 			.then((res) => res.data)
-			.catch(handleAxiosError);
 
 		const result = transformSchedule(rawSchedule);
 

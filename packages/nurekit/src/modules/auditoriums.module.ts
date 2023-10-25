@@ -134,7 +134,6 @@ export class AuditoriumsModule {
 				`/api/schedule?type=auditory&id=${auditoriumId}&start_time=${startTimestamp}&end_time=${endTimestamp}`,
 			)
 			.then((res) => res.data)
-			.catch(handleAxiosError);
 
 		const result = transformSchedule(rawSchedule);
 

@@ -61,7 +61,7 @@ export class GroupsModule {
 	public async findOne(name: string): Promise<IGroup> {
 		const groups = await this.findMany();
 
-		const group = groups.find((group) => group.name === name.toUpperCase());
+		const group = groups.find((group) => group.name.toLowerCase() === name);
 
 		if (!group) {
 			throw new Error("Group with such name doesn't exist");
@@ -132,10 +132,7 @@ export class GroupsModule {
 				`/api/schedule?type=group&id=${groupId}&start_time=${startTimestamp}&end_time=${endTimestamp}`,
 			)
 			.then((res) => res.data)
-			.catch(handleAxiosError);
 
-		const result = transformSchedule(rawSchedule);
-
-		return result;
+		return transformSchedule(rawSchedule);
 	}
 }
