@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-	baseURL: "https://nure-dev.pp.ua",
+	baseURL: "https://api.mindenit.tech",
 });
 
 export { axiosClient };

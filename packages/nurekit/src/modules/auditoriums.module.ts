@@ -1,8 +1,7 @@
 import { TimestampAdapter } from "../adapters/timestamp.adapter.js";
 import { handleAxiosError } from "../helpers/axios.helper.js";
-import { transformSchedule } from "../helpers/schedule.helper.js";
 import { axiosClient } from "../libs/axios.js";
-import { IAuditorium, IRawSchedule } from "../types/index.js";
+import { IAuditorium, ISchedule } from "../types/index.js";
 
 interface GetScheduleParams {
 	auditoriumName: string;
@@ -17,8 +16,8 @@ export class AuditoriumsModule {
 	 * Method returns array of objects with such fields:
 	 * ```typescript
 	 * {
-	 *   id: number;
-	 *   name: string;
+	 *   Id: number;
+	 *   Name: string;
 	 * }
 	 * ```
 	 *
@@ -33,7 +32,7 @@ export class AuditoriumsModule {
 	 */
 	public async findMany(): Promise<IAuditorium[]> {
 		return axiosClient
-			.get<IAuditorium[]>("/api/auditories")
+			.get<IAuditorium[]>("/auditories")
 			.then((res) => res.data)
 			.catch(handleAxiosError);
 	}
@@ -42,14 +41,14 @@ export class AuditoriumsModule {
 	 * Method returns object with such fields:
 	 * ```typescript
 	 * {
-	 *   id: number;
-	 *   name: string;
+	 *   Id: number;
+	 *   Name: string;
 	 * }
 	 * ```
 	 *
 	 * Example usage:
 	 * ```typescript
-	 const auditorium = await nurekit.auditoriums.findOne({ name: "285" })
+	 const auditorium = await nurekit.auditoriums.findOne("285")
 	 * ```
 	 *
 	 * @param name name of auditorium you want to get info about
@@ -62,7 +61,7 @@ export class AuditoriumsModule {
 		const auditoriums = await this.findMany();
 
 		const auditorium = auditoriums.find(
-			(auditorium) => auditorium.name === name,
+			(auditorium) => auditorium.Name === name,
 		);
 
 		if (!auditorium) {
@@ -76,26 +75,25 @@ export class AuditoriumsModule {
 	 * Method returns schedule:
 	 * ```typescript
 	 *{
-	 *  id: number;
-	 *  startTime: number;
-	 *  endTime: number;
-	 *  auditorium: string;
-	 *  numberPair: number;
-	 *  type: string;
-	 *  updatedAt: Date;
-	 *  groups: {
-	 *    id: number;
-	 *    name: string;
+	 *  Id: number;
+	 *  StartTime: number;
+	 *  EndTime: number;
+	 *  Auditory: string;
+	 *  NumberPair: number;
+	 *  Type: string;
+	 *  Groups: {
+	 *    Id: number;
+	 *    Name: string;
 	 *  }[];
-	 *  teachers: {
-	 *    id: number;
-	 *    fullName: string;
-	 *    shortName: string;
+	 *  Teachers: {
+	 *    Id: number;
+	 *    FullName: string;
+	 *    ShortName: string;
 	 *  }[];
-	 *  subject: {
-	 *    id: number;
-	 *    brief: string;
-	 *    title: string;
+	 *  Subject: {
+	 *    Id: number;
+	 *    Brief: string;
+	 *    Title: string;
 	 *  };
 	 *}[]
 	 * ```
@@ -122,21 +120,17 @@ export class AuditoriumsModule {
 		startTime,
 		endTime,
 	}: GetScheduleParams) {
-		const { id: auditoriumId } = await this.findOne(auditoriumName);
+		const { Id: auditoriumId } = await this.findOne(auditoriumName);
 
 		const { startTimestamp, endTimestamp } = this.#timestampAdapter.convert({
 			startTime,
 			endTime,
 		});
 
-		const rawSchedule = await axiosClient
-			.get<IRawSchedule[]>(
-				`/api/schedule?type=auditory&id=${auditoriumId}&start_time=${startTimestamp}&end_time=${endTimestamp}`,
+		return axiosClient
+			.get<ISchedule[]>(
+				`/schedule?type=auditory&id=${auditoriumId}&start_time=${startTimestamp}&end_time=${endTimestamp}`,
 			)
 			.then((res) => res.data)
-
-		const result = transformSchedule(rawSchedule);
-
-		return result;
 	}
 }

@@ -1,9 +1,7 @@
 import { TimestampAdapter } from "../adapters/timestamp.adapter.js";
 import { handleAxiosError } from "../helpers/axios.helper.js";
-import { transformSchedule } from "../helpers/schedule.helper.js";
-import { transformTeachers } from "../helpers/teachers.helper.js";
 import { axiosClient } from "../libs/axios.js";
-import { IRawSchedule, IRawTeacher, ITeacher } from "../types/index.js";
+import { ISchedule, ITeacher } from "../types/index.js";
 
 interface GetScheduleParams {
 	teacherName: string;
@@ -34,14 +32,10 @@ export class TeachersModule {
 	 * @publicApi
 	 */
 	public async findMany(): Promise<ITeacher[]> {
-		const rawTeachers = await axiosClient
-			.get<IRawTeacher[]>("/api/teachers")
+		return await axiosClient
+			.get<ITeacher[]>("/teachers")
 			.then((res) => res.data)
 			.catch(handleAxiosError);
-
-		const result = transformTeachers(rawTeachers);
-
-		return result;
 	}
 
 	/**
@@ -69,7 +63,7 @@ export class TeachersModule {
 		const teachers = await this.findMany();
 
 		const teacher = teachers.find((teacher) => {
-			return teacher.shortName === shortName;
+			return teacher.ShortName === shortName;
 		});
 
 		if (!teacher) {
@@ -83,26 +77,25 @@ export class TeachersModule {
 	 * Method returns schedule:
 	 * ```typescript
 	 *{
-	 *  id: number;
-	 *  startTime: number;
-	 *  endTime: number;
-	 *  auditorium: string;
-	 *  numberPair: number;
-	 *  type: string;
-	 *  updatedAt: Date;
-	 *  groups: {
-	 *    id: number;
-	 *    name: string;
+	 *  Id: number;
+	 *  StartTime: number;
+	 *  EndTime: number;
+	 *  Auditory: string;
+	 *  NumberPair: number;
+	 *  Type: string;
+	 *  Groups: {
+	 *    Id: number;
+	 *    Name: string;
 	 *  }[];
-	 *  teachers: {
-	 *    id: number;
-	 *    fullName: string;
-	 *    shortName: string;
+	 *  Teachers: {
+	 *    Id: number;
+	 *    FullName: string;
+	 *    ShortName: string;
 	 *  }[];
-	 *  subject: {
-	 *    id: number;
-	 *    brief: string;
-	 *    title: string;
+	 *  Subject: {
+	 *    Id: number;
+	 *    Brief: string;
+	 *    Title: string;
 	 *  };
 	 *}[]
 	 * ```
@@ -128,22 +121,18 @@ export class TeachersModule {
 		teacherName,
 		startTime,
 		endTime,
-	}: GetScheduleParams) {
-		const { id: teacherId } = await this.findOne(teacherName);
+	}: GetScheduleParams): Promise<ISchedule[]> {
+		const { Id: teacherId } = await this.findOne(teacherName);
 
 		const { startTimestamp, endTimestamp } = this.#timestampAdapter.convert({
 			startTime,
 			endTime,
 		});
 
-		const rawSchedule = await axiosClient
-			.get<IRawSchedule[]>(
-				`/api/schedule?type=teacher&id=${teacherId}&start_time=${startTimestamp}&end_time=${endTimestamp}`,
+		return await axiosClient
+			.get<ISchedule[]>(
+				`/schedule?type=teacher&id=${teacherId}&start_time=${startTimestamp}&end_time=${endTimestamp}`,
 			)
 			.then((res) => res.data)
-
-		const result = transformSchedule(rawSchedule);
-
-		return result;
 	}
 }
