@@ -1,4 +1,4 @@
-# `nurejs/api`
+# `nurekit`
 
 > **Warning**
 > The library is a work in progress still. I'm building it in public
