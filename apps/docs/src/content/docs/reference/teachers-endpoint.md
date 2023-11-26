@@ -10,17 +10,17 @@ Method returns an auditorium.
 ### Example
 
 ```typescript
-import { Nurekit } from "@nurejs/api";
+import { Nurekit } from "nurekit";
 
 const nurekit = new Nurekit();
 
-const auditorium = await nurekit.teachers.findOne("Боцюра О. А.");
+const teacher = await nurekit.teachers.findOne("Боцюра О. А.");
 ```
 
 ### API
 
 ```typescript
-const { id, name } = await nurekit.teachers.findOne(shortName);
+const { Id, Name } = await nurekit.teachers.findOne(shortName);
 ```
 
 #### Input
@@ -31,9 +31,9 @@ const { id, name } = await nurekit.teachers.findOne(shortName);
 
 In output you will get an object with such fields:
 
-- `id: number`
-- `shortName: string`
-- `fullName: string`
+- `Id: number`
+- `ShortName: string`
+- `FullName: string`
 
 ## `findMany`
 
@@ -42,17 +42,17 @@ Method returns an array of teachers.
 ### Example
 
 ```typescript
-import { Nurekit } from "@nurejs/api";
+import { Nurekit } from "nurekit";
 
 const nurekit = new Nurekit();
 
-const auditoriums = await nurekit.teachers.findMany();
+const teachers = await nurekit.teachers.findMany();
 ```
 
 ### API
 
 ```typescript
-const auditoriums = await nurekit.teachers.findMany();
+const teachers = await nurekit.teachers.findMany();
 ```
 
 #### Input
@@ -74,7 +74,7 @@ Method returns a schedule for a teacher.
 ### Example
 
 ```typescript
-import { Nurekit } from "@nurejs/api";
+import { Nurekit } from "nurekit";
 
 const nurekit = new Nurekit();
 
@@ -105,21 +105,20 @@ const schedule = await nurekit.groups.getSchedule({
 
 In output you will get an array of objects with such fields
 
-- `id: number`
-- `startTime: number`
-- `endTime: number`
-- `auditorium: string`
-- `numberPair: number`
-- `type: string`
-- `updatedAt: Date`
-- `groups: IGroup[]`
-  - `id: number`
-  - `name: string`
-- `teachers: ITeacher[]`
-  - `id: number`
-  - `fullName: string`
-  - `shortName: string`
-- `subject: ISubject[]`
-  - `id: number`
-  - `brief: string`
-  - `title: string`
+- `Id: number`
+- `StartTime: number`
+- `EndTime: number`
+- `Auditorium: string`
+- `NumberPair: number`
+- `Type: string`
+- `Groups: IGroup[]`
+  - `Id: number`
+  - `Name: string`
+- `Teachers: ITeacher[]`
+  - `Id: number`
+  - `FullName: string`
+  - `ShortName: string`
+- `Subject: ISubject[]`
+  - `Id: number`
+  - `Brief: string`
+  - `Title: string`

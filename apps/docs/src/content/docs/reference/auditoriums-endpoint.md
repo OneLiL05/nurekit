@@ -10,7 +10,7 @@ Method returns a group.
 ### Example
 
 ```typescript
-import { Nurekit } from "@nurejs/api";
+import { Nurekit } from "nurekit";
 
 const nurekit = new Nurekit();
 
@@ -20,7 +20,7 @@ const auditorium = await nurekit.auditoriums.findOne("285");
 ### API
 
 ```typescript
-const { id, name } = await nurekit.auditoriums.findOne(name);
+const { Id, Name } = await nurekit.auditoriums.findOne(name);
 ```
 
 #### Input
@@ -31,8 +31,8 @@ const { id, name } = await nurekit.auditoriums.findOne(name);
 
 In output you will get an object with such fields:
 
-- `id: number`
-- `name: string`
+- `Id: number`
+- `Name: string`
 
 ## `findMany`
 
@@ -41,7 +41,7 @@ Method returns an array of auditoriums.
 ### Example
 
 ```typescript
-import { Nurekit } from "@nurejs/api";
+import { Nurekit } from "nurekit";
 
 const nurekit = new Nurekit();
 
@@ -62,8 +62,8 @@ This method doesn't need any arguments.
 
 In output you will get an array of objects with such fields:
 
-- `id: number`
-- `name: string`
+- `Id: number`
+- `Name: string`
 
 ## `getSchedule`
 
@@ -72,7 +72,7 @@ Method returns a schedule for an auditorium.
 ### Example
 
 ```typescript
-import { Nurekit } from "@nurejs/api";
+import { Nurekit } from "nurekit";
 
 const nurekit = new Nurekit();
 
@@ -103,21 +103,20 @@ const schedule = await nurekit.auditoriums.getSchedule({
 
 In output you will get an array of objects with such fields
 
-- `id: number`
-- `startTime: number`
-- `endTime: number`
-- `auditorium: string`
-- `numberPair: number`
-- `type: string`
-- `updatedAt: Date`
-- `groups: IGroup[]`
-  - `id: number`
-  - `name: string`
-- `teachers: ITeacher[]`
-  - `id: number`
-  - `fullName: string`
-  - `shortName: string`
-- `subject: ISubject[]`
-  - `id: number`
-  - `brief: string`
-  - `title: string`
+- `Id: number`
+- `StartTime: number`
+- `EndTime: number`
+- `Auditorium: string`
+- `NumberPair: number`
+- `Type: string`
+- `Groups: IGroup[]`
+  - `Id: number`
+  - `Name: string`
+- `Teachers: ITeacher[]`
+  - `Id: number`
+  - `FullName: string`
+  - `ShortName: string`
+- `Subject: ISubject[]`
+  - `Id: number`
+  - `Brief: string`
+  - `Title: string`

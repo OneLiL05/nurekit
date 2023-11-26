@@ -11,16 +11,18 @@ JavaScript library for Nure API. Based on [nure-cist-api](https://github.com/nur
 
 ## Installation
 
-```typescript
-npm i @nurejs/api
+```shell
+npm i nurekit
+# yarn add nurekit
+# pnpm add nurekit
 ```
 
 ## Usage
 
 ```typescript
-import { Nurekit } from "@nurejs/api"
+import { Nurekit } from "nurekit";
 
-const nurekit = new Nurekit()
+const nurekit = new Nurekit();
 ```
 
 ## Further reading

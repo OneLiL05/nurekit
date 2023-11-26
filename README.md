@@ -8,13 +8,15 @@ JavaScript library for Nure API. Based on [nure-cist-api](https://github.com/nur
 ## Installation
 
 ```shell
-npm i @nurejs/api
+npm i nurekit
+# yarn add nurekit
+# pnpm add nurekit
 ```
 
 ## Usage
 
 ```js
-import { Nurekit } from "@nurejs/api";
+import { Nurekit } from "nurekit";
 
 const nurekit = new Nurekit();
 ```
