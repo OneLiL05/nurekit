@@ -1,7 +1,7 @@
 {
   "name": "nurekit",
   "description": "Node.js client for Nure API",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "keywords": [
     "api",
     "nure",
