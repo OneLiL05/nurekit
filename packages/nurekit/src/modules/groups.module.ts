@@ -16,8 +16,8 @@ export class GroupsModule {
 	 * Method returns array of objects with such fields:
 	 * ```typescript
 	 * {
-	 *   Id: number;
-	 *   Name: string;
+	 *   id: number;
+	 *   name: string;
 	 * }
 	 * ```
 	 *
@@ -60,7 +60,7 @@ export class GroupsModule {
 	public async findOne(name: string): Promise<IGroup> {
 		const groups = await this.findMany();
 
-		const group = groups.find((group) => group.Name.toLowerCase() === name.toLowerCase());
+		const group = groups.find((group) => group.name.toLowerCase() === name.toLowerCase());
 
 		if (!group) {
 			throw new Error("Group with such name doesn't exist");
@@ -73,25 +73,25 @@ export class GroupsModule {
 	 * Method returns schedule:
 	 * ```typescript
 	 *{
-	 *  Id: number;
-	 *  StartTime: number;
-	 *  EndTime: number;
-	 *  Auditory: string;
-	 *  NumberPair: number;
-	 *  Type: string;
-	 *  Groups: {
-	 *    Id: number;
-	 *    Name: string;
+	 *  id: number;
+	 *  startTime: number;
+	 *  endTime: number;
+	 *  auditory: string;
+	 *  numberPair: number;
+	 *  type: string;
+	 *  groups: {
+	 *    id: number;
+	 *    name: string;
 	 *  }[];
-	 *  Teachers: {
-	 *    Id: number;
-	 *    FullName: string;
-	 *    ShortName: string;
+	 *  teachers: {
+	 *    id: number;
+	 *    fullName: string;
+	 *    shortName: string;
 	 *  }[];
-	 *  Subject: {
-	 *    Id: number;
-	 *    Brief: string;
-	 *    Title: string;
+	 *  subject: {
+	 *    id: number;
+	 *    brief: string;
+	 *    title: string;
 	 *  };
 	 *}[]
 	 * ```
@@ -118,7 +118,7 @@ export class GroupsModule {
 		startTime,
 		endTime,
 	}: GetScheduleParams): Promise<ISchedule[]> {
-		const { Id: groupId } = await this.findOne(groupName);
+		const { id: groupId } = await this.findOne(groupName);
 
 		const { startTimestamp, endTimestamp } = this.#timestampAdapter.convert({
 			startTime,

@@ -16,8 +16,8 @@ export class AuditoriumsModule {
 	 * Method returns array of objects with such fields:
 	 * ```typescript
 	 * {
-	 *   Id: number;
-	 *   Name: string;
+	 *   id: number;
+	 *   name: string;
 	 * }
 	 * ```
 	 *
@@ -41,8 +41,8 @@ export class AuditoriumsModule {
 	 * Method returns object with such fields:
 	 * ```typescript
 	 * {
-	 *   Id: number;
-	 *   Name: string;
+	 *   id: number;
+	 *   name: string;
 	 * }
 	 * ```
 	 *
@@ -61,7 +61,7 @@ export class AuditoriumsModule {
 		const auditoriums = await this.findMany();
 
 		const auditorium = auditoriums.find(
-			(auditorium) => auditorium.Name === name,
+			(auditorium) => auditorium.name === name,
 		);
 
 		if (!auditorium) {
@@ -75,25 +75,25 @@ export class AuditoriumsModule {
 	 * Method returns schedule:
 	 * ```typescript
 	 *{
-	 *  Id: number;
-	 *  StartTime: number;
-	 *  EndTime: number;
-	 *  Auditory: string;
-	 *  NumberPair: number;
-	 *  Type: string;
-	 *  Groups: {
-	 *    Id: number;
-	 *    Name: string;
+	 *  id: number;
+	 *  startTime: number;
+	 *  endTime: number;
+	 *  auditory: string;
+	 *  numberPair: number;
+	 *  type: string;
+	 *  groups: {
+	 *    id: number;
+	 *    name: string;
 	 *  }[];
-	 *  Teachers: {
-	 *    Id: number;
-	 *    FullName: string;
-	 *    ShortName: string;
+	 *  teachers: {
+	 *    id: number;
+	 *    fullName: string;
+	 *    shortName: string;
 	 *  }[];
-	 *  Subject: {
-	 *    Id: number;
-	 *    Brief: string;
-	 *    Title: string;
+	 *  subject: {
+	 *    id: number;
+	 *    brief: string;
+	 *    title: string;
 	 *  };
 	 *}[]
 	 * ```
@@ -120,7 +120,7 @@ export class AuditoriumsModule {
 		startTime,
 		endTime,
 	}: GetScheduleParams) {
-		const { Id: auditoriumId } = await this.findOne(auditoriumName);
+		const { id: auditoriumId } = await this.findOne(auditoriumName);
 
 		const { startTimestamp, endTimestamp } = this.#timestampAdapter.convert({
 			startTime,

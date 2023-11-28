@@ -1,32 +1,32 @@
 interface IGroup {
-	Id: number;
-	Name: string
+	id: number;
+	name: string
 }
 
 interface IAuditorium extends IGroup {}
 
 interface ITeacher {
-	Id: number;
-	FullName: string;
-	ShortName: string;
+	id: number;
+	fullName: string;
+	shortName: string;
 }
 
 interface ISubject {
-	Id: number;
-	Brief: string;
-	Title: string;
+	id: number;
+	brief: string;
+	title: string;
 }
 
 interface ISchedule {
-	Id: number;
-	StartTime: number;
-	EndTime: number;
-	Auditory: string;
-	NumberPair: number;
-	Type: string;
-	Groups: IGroup[];
-	Teachers: ITeacher[];
-	Subject: ISubject;
+	id: number;
+	startTime: number;
+	endTime: number;
+	auditory: string;
+	numberPair: number;
+	type: string;
+	groups: IGroup[];
+	teachers: ITeacher[];
+	subject: ISubject;
 }
 
 export type {
