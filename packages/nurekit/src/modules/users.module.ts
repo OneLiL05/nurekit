@@ -34,17 +34,13 @@ export class UsersModule {
 	 * @publicApi
 	 */
   async info({ accessToken }: IOptions): Promise<IUser> {
-    try {
-      const response = await axiosClient.get<IRawUser>("/user", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
+    const response = await axiosClient.get<IRawUser>("/user", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
 
-      return this.#userAdapter.convert(response.data)
-    } catch (error) {
-      throw new Error(error as any)
-    }
+    return this.#userAdapter.convert(response.data)
   }
 
   /**
@@ -66,15 +62,11 @@ export class UsersModule {
 	 * @publicApi
 	 */
   async addSchedule({ type, ...rest }: IShortSchedule, { accessToken }: IOptions): Promise<void> {
-    try {
-      await axiosClient.post('/user/add', { ...rest, type: this.#typeAdapter.toRaw(type) }, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
-    } catch (error) {
-      throw new Error(error as any)
-    }
+    await axiosClient.post('/user/add', { ...rest, type: this.#typeAdapter.toRaw(type) }, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
   }
 
   /**
@@ -98,15 +90,11 @@ export class UsersModule {
 	 * @publicApi
 	 */
   async removeSchedule({ type, ...rest }: IShortSchedule, { accessToken }: IOptions) {
-    try {
-      await axiosClient.delete('/user/remove', {
-        data: { ...rest, type: this.#typeAdapter.toRaw(type) },
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
-    } catch (error) {
-      throw new Error(error as any)
-    }
+    await axiosClient.delete('/user/remove', {
+      data: { ...rest, type: this.#typeAdapter.toRaw(type) },
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
   }
 }

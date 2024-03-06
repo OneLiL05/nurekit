@@ -21,11 +21,7 @@ export class AuthModule {
 	 * @publicApi
 	 */
   async signup(data: IAuthData): Promise<void> {
-    try {
-      await axiosClient.post("/register", data)
-    } catch (error) {
-      throw new Error(error as any)
-    }
+    await axiosClient.post("/register", data)
   }
 
   /**
@@ -52,10 +48,6 @@ export class AuthModule {
 	 * @publicApi
 	 */
   async login(data: IAuthData): Promise<ITokens> {
-    try {
-      return (await axiosClient.post<ITokens>('/login', data)).data
-    } catch (error) {
-      throw new Error(error as any)
-    }
+    return (await axiosClient.post<ITokens>('/login', data)).data
   }
 }
