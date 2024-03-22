@@ -1,49 +1,56 @@
 {
-  "name": "nurekit",
-  "description": "Node.js client for Nure API",
-  "version": "0.4.5",
-  "keywords": [
-    "api",
-    "nure",
-    "js"
-  ],
-  "type": "module",
-  "license": "GNU GPLv3.0",
-  "author": "Kyrylo Savieliev",
-  "homepage": "https://onelil05.github.io/nurekit/",
-  "maintainers": [
-    {
-      "name": "Kyrylo Savieliev",
-      "url": "https://github.com/OneLiL05"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:OneLiL05/nurekit.git"
-  },
-  "bugs": {
-    "url": "https://github.com/OneLiL05/nurekit/issues"
-  },
-  "exports": {
-    "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/**"
-  ],
-  "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc",
-    "format": "prettier --write ./src"
-  },
-  "devDependencies": {
-    "@types/node": "^20.5.8",
-    "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "axios": "^1.6.0"
-  },
-  "private": false
+	"name": "nurekit",
+	"description": "Node.js client for Nure API",
+	"version": "0.4.5",
+	"keywords": [
+		"api",
+		"nure",
+		"js"
+	],
+	"engines": {
+		"node": ">= 18.x.x"
+	},
+	"type": "module",
+	"license": "GNU GPLv3.0",
+	"author": "Kyrylo Savieliev",
+	"homepage": "https://onelil05.github.io/nurekit/",
+	"maintainers": [
+		{
+			"name": "Kyrylo Savieliev",
+			"url": "https://github.com/OneLiL05"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:OneLiL05/nurekit.git"
+	},
+	"bugs": {
+		"url": "https://github.com/OneLiL05/nurekit/issues"
+	},
+	"exports": {
+		"types": "./dist/index.d.ts",
+		"default": "./dist/index.js"
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist/**"
+	],
+	"scripts": {
+		"start": "node dist/index.js",
+		"build": "tsc",
+		"dev": "pnpm run \"/dev:/\"",
+		"dev:tsc": "tsc --watch --preserveWatchOutput",
+		"dev:node": "node --enable-source-maps --watch dist/index.js",
+		"play": "tsm ./playground.ts"
+	},
+	"devDependencies": {
+		"@types/node": "^20.5.8",
+		"tsm": "^2.3.0",
+		"typescript": "^5.2.2"
+	},
+	"dependencies": {
+		"axios": "^1.6.0"
+	},
+	"private": false
 }

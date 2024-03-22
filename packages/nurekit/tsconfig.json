@@ -1,14 +1,19 @@
 {
-  "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ES2022",
-    "declaration": true,
-    "sourceMap": true,
-    "outDir": "dist",
-    "strict": true,
-    "strictNullChecks": true,
-    "skipLibCheck": true
-  },
-  "include": ["src"]
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"target": "es2022",
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"moduleDetection": "force",
+		"isolatedModules": true,
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"moduleResolution": "NodeNext",
+		"module": "NodeNext",
+		"outDir": "dist",
+		"sourceMap": true
+	},
+	"exclude": ["./playground.ts"],
+	"include": ["src"]
 }

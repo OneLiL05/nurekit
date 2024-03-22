@@ -128,9 +128,9 @@ export class AuditoriumsModule {
 		});
 
 		return axiosClient
-			.get<ISchedule[]>(
-				`/schedule?type=auditory&id=${auditoriumId}&start_time=${startTimestamp}&end_time=${endTimestamp}`,
-			)
-			.then((res) => res.data)
+			.get<
+				ISchedule[]
+			>(`/schedule?type=auditory&id=${auditoriumId}&start_time=${startTimestamp}&end_time=${endTimestamp}`)
+			.then((res) => res.data);
 	}
 }
