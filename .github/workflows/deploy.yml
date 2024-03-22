@@ -20,8 +20,8 @@ jobs:
         uses: withastro/action@v0
         with:
           path: ./apps/docs
-          node-version: 18
-          package-manager: yarn
+          node-version: 20
+          package-manager: pnpm
   deploy:
     needs: build
     runs-on: ubuntu-latest
