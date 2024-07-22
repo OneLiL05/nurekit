@@ -20,7 +20,7 @@ const auditorium = await nurekit.auditoriums.findOne("285");
 ### API
 
 ```typescript
-const { Id, Name } = await nurekit.auditoriums.findOne(name);
+const { id, name } = await nurekit.auditoriums.findOne(name);
 ```
 
 #### Input
@@ -31,8 +31,8 @@ const { Id, Name } = await nurekit.auditoriums.findOne(name);
 
 In output you will get an object with such fields:
 
-- `Id: number`
-- `Name: string`
+- `id: number`
+- `name: string`
 
 ## `findMany`
 
@@ -62,8 +62,8 @@ This method doesn't need any arguments.
 
 In output you will get an array of objects with such fields:
 
-- `Id: number`
-- `Name: string`
+- `id: number`
+- `name: string`
 
 ## `getSchedule`
 
@@ -103,20 +103,20 @@ const schedule = await nurekit.auditoriums.getSchedule({
 
 In output you will get an array of objects with such fields
 
-- `Id: number`
-- `StartTime: number`
-- `EndTime: number`
-- `Auditorium: string`
-- `NumberPair: number`
-- `Type: string`
-- `Groups: IGroup[]`
-  - `Id: number`
-  - `Name: string`
-- `Teachers: ITeacher[]`
-  - `Id: number`
-  - `FullName: string`
-  - `ShortName: string`
-- `Subject: ISubject[]`
-  - `Id: number`
-  - `Brief: string`
-  - `Title: string`
+- `id: number`
+- `startTime: number`
+- `endTime: number`
+- `auditory: string`
+- `numberPair: number`
+- `type: string`
+- `groups: IGroup[]`
+  - `id: number`
+  - `name: string`
+- `teachers: ITeacher[]`
+  - `id: number`
+  - `fullName: string`
+  - `shortName: string`
+- `subject: ISubject[]`
+  - `id: number`
+  - `brief: string`
+  - `title: string`

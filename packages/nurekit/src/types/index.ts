@@ -1,6 +1,6 @@
 interface IGroup {
 	id: number;
-	name: string
+	name: string;
 }
 
 interface IAuditorium extends IGroup {}
@@ -35,13 +35,13 @@ interface IAuthData {
 }
 
 interface ITokens {
-	accessToken: string
-	refreshToken: string
+	accessToken: string;
+	refreshToken: string;
 }
 
-type TRawShortScheduleType = "group" | "auditory" | "teacher"
+type TRawShortScheduleType = "group" | "auditory" | "teacher";
 
-type TShortScheduleType = "groups" | "auditoriums" | "teachers"
+type TShortScheduleType = "groups" | "auditoriums" | "teachers";
 
 interface IShortSchedule {
 	name: string;
@@ -50,7 +50,7 @@ interface IShortSchedule {
 }
 
 interface IRawUser {
-	Id: string;
+	id: string;
 	UserName: string;
 	Email: string;
 	Schedules: string[];
@@ -61,6 +61,11 @@ interface IUser {
 	username: string;
 	email: string;
 	schedules: IShortSchedule[];
+}
+
+interface IConvertedTime {
+	startTimestamp: number;
+	endTimestamp: number;
 }
 
 export type {
@@ -76,4 +81,5 @@ export type {
 	IRawUser,
 	IUser,
 	TRawShortScheduleType,
+	IConvertedTime,
 };

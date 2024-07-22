@@ -4,14 +4,14 @@ import { IRawUser, IShortSchedule, IUser } from "../index.js";
 import { axiosClient } from "../libs/axios.js";
 
 interface IOptions {
-  accessToken: string;
+	accessToken: string;
 }
 
 export class UsersModule {
-  #userAdapter = new UserAdapter()
-  #typeAdapter = new TypeAdapter()
+	#userAdapter = new UserAdapter();
+	#typeAdapter = new TypeAdapter();
 
-  /**
+	/**
 	 * Method returns info about user:
 	 * ```typescript
 	 * {
@@ -33,17 +33,17 @@ export class UsersModule {
 	 *
 	 * @publicApi
 	 */
-  async info({ accessToken }: IOptions): Promise<IUser> {
-    const response = await axiosClient.get<IRawUser>("/user", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
+	async info({ accessToken }: IOptions): Promise<IUser> {
+		const response = await axiosClient.get<IRawUser>("/user", {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
 
-    return this.#userAdapter.convert(response.data)
-  }
+		return this.#userAdapter.convert(response.data);
+	}
 
-  /**
+	/**
 	 * Example usage:
 	 * ```typescript
    const options = { accessToken: 'token' }
@@ -61,15 +61,22 @@ export class UsersModule {
 	 *
 	 * @publicApi
 	 */
-  async addSchedule({ type, ...rest }: IShortSchedule, { accessToken }: IOptions): Promise<void> {
-    await axiosClient.post('/user/add', { ...rest, type: this.#typeAdapter.toRaw(type) }, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-  }
+	async addSchedule(
+		{ type, ...rest }: IShortSchedule,
+		{ accessToken }: IOptions,
+	): Promise<void> {
+		await axiosClient.post(
+			"/user/add",
+			{ ...rest, type: this.#typeAdapter.toRaw(type) },
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			},
+		);
+	}
 
-  /**
+	/**
 	 * Method removes schedule from your account:
 	 *
 	 * Example usage:
@@ -89,12 +96,15 @@ export class UsersModule {
 	 *
 	 * @publicApi
 	 */
-  async removeSchedule({ type, ...rest }: IShortSchedule, { accessToken }: IOptions) {
-    await axiosClient.delete('/user/remove', {
-      data: { ...rest, type: this.#typeAdapter.toRaw(type) },
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-  }
+	async removeSchedule(
+		{ type, ...rest }: IShortSchedule,
+		{ accessToken }: IOptions,
+	) {
+		await axiosClient.delete("/user/remove", {
+			data: { ...rest, type: this.#typeAdapter.toRaw(type) },
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
+	}
 }

@@ -20,7 +20,7 @@ const teacher = await nurekit.teachers.findOne("Боцюра О. А.");
 ### API
 
 ```typescript
-const { Id, Name } = await nurekit.teachers.findOne(shortName);
+const { id, name } = await nurekit.teachers.findOne(shortName);
 ```
 
 #### Input
@@ -31,9 +31,9 @@ const { Id, Name } = await nurekit.teachers.findOne(shortName);
 
 In output you will get an object with such fields:
 
-- `Id: number`
-- `ShortName: string`
-- `FullName: string`
+- `id: number`
+- `shortName: string`
+- `fullName: string`
 
 ## `findMany`
 
@@ -105,20 +105,20 @@ const schedule = await nurekit.groups.getSchedule({
 
 In output you will get an array of objects with such fields
 
-- `Id: number`
-- `StartTime: number`
-- `EndTime: number`
-- `Auditorium: string`
-- `NumberPair: number`
-- `Type: string`
-- `Groups: IGroup[]`
-  - `Id: number`
-  - `Name: string`
-- `Teachers: ITeacher[]`
-  - `Id: number`
-  - `FullName: string`
-  - `ShortName: string`
-- `Subject: ISubject[]`
-  - `Id: number`
-  - `Brief: string`
-  - `Title: string`
+- `id: number`
+- `startTime: number`
+- `endTime: number`
+- `auditory: string`
+- `numberPair: number`
+- `type: string`
+- `groups: IGroup[]`
+  - `id: number`
+  - `name: string`
+- `teachers: ITeacher[]`
+  - `id: number`
+  - `fullName: string`
+  - `shortName: string`
+- `subject: ISubject[]`
+  - `id: number`
+  - `brief: string`
+  - `title: string`

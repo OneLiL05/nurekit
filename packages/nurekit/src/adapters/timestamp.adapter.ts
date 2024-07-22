@@ -16,7 +16,7 @@ export class TimestampAdapter {
 		};
 	}
 
-	#toTimestamp(date: string) {
+	#toTimestamp(date: string): number {
 		const parsedDate = Date.parse(date);
 
 		return parsedDate / 1000;

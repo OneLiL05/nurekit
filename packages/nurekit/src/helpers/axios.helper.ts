@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 
-const handleAxiosError = (error: AxiosError) => {
+const handleAxiosError = (error: AxiosError): never => {
 	if (error.response) {
 		console.log(error.response.data);
 		throw new Error(JSON.stringify(error.response.data));

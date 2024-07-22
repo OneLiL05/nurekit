@@ -1,5 +1,7 @@
+import axios from "axios";
 import { TimestampAdapter } from "../adapters/timestamp.adapter.js";
 import { handleAxiosError } from "../helpers/axios.helper.js";
+import { getScheduleParams } from "../helpers/searchParams.helper.js";
 import { axiosClient } from "../libs/axios.js";
 import { IAuditorium, ISchedule } from "../types/index.js";
 
@@ -13,47 +15,38 @@ export class AuditoriumsModule {
 	#timestampAdapter = new TimestampAdapter();
 
 	/**
-	 * Method returns array of objects with such fields:
+	 * Find all Nure auditoriums
+	 *
+	 * @returns an array of auditorium objects
+	 *
+	 * @example Example usage:
 	 * ```typescript
-	 * {
-	 *   id: number;
-	 *   name: string;
-	 * }
+	 * const auditoriums = await nurekit.auditoriums.findMany()
 	 * ```
 	 *
-	 * Example usage:
-	 * ```typescript
-	 const auditoriums = await nurekit.auditoriums.findMany()
-	 * ```
-	 *
-	 * @see [Docs](https://github.com/OneLiL05/nurekit#get-auditoriums)
+	 * @see [Docs](https://onelil05.github.io/nurekit/reference/auditoriums-endpoint/#findmany)
 	 *
 	 * @publicApi
 	 */
 	public async findMany(): Promise<IAuditorium[]> {
 		return axiosClient
-			.get<IAuditorium[]>("/auditories")
+			.get<IAuditorium[]>("/lists/auditories")
 			.then((res) => res.data)
 			.catch(handleAxiosError);
 	}
 
 	/**
-	 * Method returns object with such fields:
-	 * ```typescript
-	 * {
-	 *   id: number;
-	 *   name: string;
-	 * }
-	 * ```
-	 *
-	 * Example usage:
-	 * ```typescript
-	 const auditorium = await nurekit.auditoriums.findOne("285")
-	 * ```
+	 * Find an auditory by name
 	 *
 	 * @param name name of auditorium you want to get info about
+	 * @returns an auditorium object
 	 *
-	 * @see [Docs](https://github.com/OneLiL05/nurekit#get-auditorium)
+	 * @example Example usage:
+	 * ```typescript
+	 * const auditorium = await nurekit.auditoriums.findOne("285")
+	 * ```
+	 *
+	 * @see [Docs](https://onelil05.github.io/nurekit/reference/auditoriums-endpoint/#findone)
 	 *
 	 * @publicApi
 	 */
@@ -72,46 +65,23 @@ export class AuditoriumsModule {
 	}
 
 	/**
-	 * Method returns schedule:
-	 * ```typescript
-	 *{
-	 *  id: number;
-	 *  startTime: number;
-	 *  endTime: number;
-	 *  auditory: string;
-	 *  numberPair: number;
-	 *  type: string;
-	 *  groups: {
-	 *    id: number;
-	 *    name: string;
-	 *  }[];
-	 *  teachers: {
-	 *    id: number;
-	 *    fullName: string;
-	 *    shortName: string;
-	 *  }[];
-	 *  subject: {
-	 *    id: number;
-	 *    brief: string;
-	 *    title: string;
-	 *  };
-	 *}[]
-	 * ```
-	 *
-	 * Example usage:
-	 * ```typescript
-	 const schedule = await nurekit.auditoriums.getSchedule({
-  	  auditoriumName: "287",
-  	  startTime: "2023-09-11",
-  	  endTime: "2023-09-15",
-	});
-	 * ```
+	 * Get auditorium schedule
 	 *
 	 * @param auditoriumName name of an auditorium you want to get schedule for
-	 * @param startTime
-	 * @param endTime
+	 * @param startTime beginning of the time period for which the schedule is to be retrieved
+	 * @param endTime end of the time period for which the schedule is to be retrieved
+	 * @returns an array of subjects that for specific auditorium
 	 *
-	 * @see [Docs](https://github.com/OneLiL05/nurekit#get-schedule)
+	 * @example Example usage:
+	 * ```typescript
+	 * const schedule = await nurekit.auditoriums.getSchedule({
+	 * 	auditoriumName: "287",
+	 *  startTime: "2023-09-11",
+	 *  endTime: "2023-09-15",
+	 * });
+	 * ```
+	 *
+	 * @see [Docs](https://onelil05.github.io/nurekit/reference/auditoriums-endpoint/#getschedule)
 	 *
 	 * @publicApi
 	 */
@@ -119,18 +89,21 @@ export class AuditoriumsModule {
 		auditoriumName,
 		startTime,
 		endTime,
-	}: GetScheduleParams) {
+	}: GetScheduleParams): Promise<ISchedule[]> {
 		const { id: auditoriumId } = await this.findOne(auditoriumName);
 
-		const { startTimestamp, endTimestamp } = this.#timestampAdapter.convert({
+		const timestamps = this.#timestampAdapter.convert({
 			startTime,
 			endTime,
 		});
 
-		return axiosClient
-			.get<
-				ISchedule[]
-			>(`/schedule?type=auditory&id=${auditoriumId}&start_time=${startTimestamp}&end_time=${endTimestamp}`)
-			.then((res) => res.data);
+		const params = getScheduleParams(timestamps);
+
+		const schedule = await axios.get<ISchedule[]>(
+			`/schedule/auditories/${auditoriumId}`,
+			{ params },
+		);
+
+		return schedule.data;
 	}
 }
