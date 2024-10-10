@@ -12,7 +12,8 @@
 		"moduleResolution": "NodeNext",
 		"module": "NodeNext",
 		"outDir": "dist",
-		"sourceMap": true
+		"sourceMap": true,
+		"declaration": true
 	},
 	"exclude": ["./playground.ts"],
 	"include": ["src"]
