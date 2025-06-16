@@ -1,85 +1,60 @@
-interface IGroup {
+interface Group {
 	id: number;
 	name: string;
 }
 
-interface IAuditorium extends IGroup {}
+interface Auditorium extends Group {}
 
-interface ITeacher {
+interface Teacher {
 	id: number;
 	fullName: string;
 	shortName: string;
 }
 
-interface ISubject {
+interface Subject {
 	id: number;
 	brief: string;
 	title: string;
 }
 
-interface ISchedule {
+interface Schedule {
 	id: number;
-	startTime: number;
-	endTime: number;
-	auditory: string;
+	startedAt: number;
+	endedAt: number;
+	auditorium: Auditorium;
 	numberPair: number;
 	type: string;
-	groups: IGroup[];
-	teachers: ITeacher[];
-	subject: ISubject;
+	groups: Group[];
+	teachers: Teacher[];
+	subject: Subject;
 }
 
-interface IAuthData {
-	email: string;
-	password: string;
+interface GetScheduleParams {
+	id: number;
+	startedAt: string;
+	endedAt: string;
 }
 
-interface ITokens {
-	accessToken: string;
-	refreshToken: string;
-}
+type ScheduleType = "groups" | "auditoriums" | "teachers";
 
-type TRawShortScheduleType = "group" | "auditory" | "teacher";
-
-type TShortScheduleType = "groups" | "auditoriums" | "teachers";
-
-interface IShortSchedule {
+interface ShortSchedule {
 	name: string;
 	id: number;
-	type: TShortScheduleType;
+	type: ScheduleType;
 }
 
-interface IRawUser {
-	id: string;
-	UserName: string;
-	Email: string;
-	Schedules: string[];
-}
-
-interface IUser {
-	id: string;
-	username: string;
-	email: string;
-	schedules: IShortSchedule[];
-}
-
-interface IConvertedTime {
-	startTimestamp: number;
-	endTimestamp: number;
+interface TimeInterval {
+	start: string;
+	end: string;
 }
 
 export type {
-	ITeacher,
-	IGroup,
-	IAuditorium,
-	ISubject,
-	ISchedule,
-	IAuthData,
-	ITokens,
-	IShortSchedule,
-	TShortScheduleType,
-	IRawUser,
-	IUser,
-	TRawShortScheduleType,
-	IConvertedTime,
+	Teacher,
+	Group,
+	Auditorium,
+	Subject,
+	Schedule,
+	ShortSchedule,
+	TimeInterval,
+	GetScheduleParams,
 };

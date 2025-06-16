@@ -1,9 +1,15 @@
-import { AuditoriumsModule } from "./modules/auditoriums.module.js";
-import { GroupsModule } from "./modules/groups.module.js";
-import { TeachersModule } from "./modules/teachers.module.js";
+import { BaseModuleImpl } from "./modules/BaseModule.js";
+import { Auditorium, Group, Teacher } from "./types/index.js";
+import { BaseModule } from "./types/modules.js";
 
 export class Nurekit {
-	auditoriums: AuditoriumsModule = new AuditoriumsModule();
-	groups: GroupsModule = new GroupsModule();
-	teachers: TeachersModule = new TeachersModule();
+	readonly auditoriums: BaseModule<Auditorium>;
+	readonly groups: BaseModule<Group>;
+	readonly teachers: BaseModule<Teacher>;
+
+	constructor(baseUrl: string = "https://sh.mindenit.org/api") {
+		this.auditoriums = new BaseModuleImpl(`${baseUrl}/auditoriums`);
+		this.groups = new BaseModuleImpl(`${baseUrl}/groups`);
+		this.teachers = new BaseModuleImpl(`${baseUrl}/teachers`);
+	}
 }
