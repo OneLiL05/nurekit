@@ -31,8 +31,8 @@ interface Schedule {
 
 interface GetScheduleParams {
 	id: number;
-	startedAt: string;
-	endedAt: string;
+	startedAt: number;
+	endedAt: number;
 }
 
 type ScheduleType = "groups" | "auditoriums" | "teachers";
