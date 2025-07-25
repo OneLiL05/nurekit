@@ -1,3 +1,5 @@
+type EventType = "Лк" | "Пз" | "Лб" | "Конс" | "Зал" | "Екз" | "КП/КР";
+
 interface Group {
 	id: number;
 	name: string;
@@ -29,10 +31,18 @@ interface Schedule {
 	subject: Subject;
 }
 
+interface ScheduleFilters {
+	lessonTypes: EventType[];
+	teachers: number[];
+	auditoriums: number[];
+	subjects: number[];
+}
+
 interface GetScheduleParams {
 	id: number;
 	startedAt: number;
 	endedAt: number;
+	filters?: Partial<ScheduleFilters>;
 }
 
 type ScheduleType = "groups" | "auditoriums" | "teachers";
@@ -43,9 +53,10 @@ interface ShortSchedule {
 	type: ScheduleType;
 }
 
-interface TimeInterval {
-	start: string;
-	end: string;
+interface ScheduleQueryParams {
+	start: number;
+	end: number;
+	filters?: Partial<ScheduleFilters>;
 }
 
 export type {
@@ -55,6 +66,7 @@ export type {
 	Subject,
 	Schedule,
 	ShortSchedule,
-	TimeInterval,
+	ScheduleQueryParams,
 	GetScheduleParams,
+	EventType,
 };
