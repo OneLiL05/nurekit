@@ -12,7 +12,7 @@ export const getScheduleParams = ({
 
 	if (filters) {
 		Object.entries(filters).forEach(([key, value]) => {
-			if (value !== undefined) {
+			if (value !== undefined && Array.isArray(value)) {
 				params.append(`filters[${key}]`, value.join(","));
 			}
 		});
