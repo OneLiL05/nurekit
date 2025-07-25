@@ -1,11 +1,22 @@
-import { TimeInterval } from "../types/index.js";
+import { ScheduleQueryParams } from "../types/index.js";
 
 export const getScheduleParams = ({
 	start,
 	end,
-}: TimeInterval): URLSearchParams => {
-	return new URLSearchParams({
-		startedAt: start,
-		endedAt: end,
+	filters,
+}: ScheduleQueryParams): URLSearchParams => {
+	const params = new URLSearchParams({
+		startedAt: start.toString(),
+		endedAt: end.toString(),
 	});
+
+	if (filters) {
+		Object.entries(filters).forEach(([key, value]) => {
+			if (value !== undefined) {
+				params.append(`filters[${key}]`, value.join(","));
+			}
+		});
+	}
+
+	return params;
 };

@@ -26,8 +26,13 @@ export class BaseModuleImpl<T extends object> implements BaseModule<T> {
 		id,
 		startedAt,
 		endedAt,
+		filters,
 	}: GetScheduleParams): Promise<Schedule[]> {
-		const params = getScheduleParams({ start: startedAt, end: endedAt });
+		const params = getScheduleParams({
+			start: startedAt,
+			end: endedAt,
+			filters,
+		});
 
 		const url = new URL(`${this.baseUrl}/${id}/schedule`);
 
