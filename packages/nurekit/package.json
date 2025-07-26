@@ -1,7 +1,7 @@
 {
 	"name": "nurekit",
 	"description": "Node.js client for Mindenit Schedule API",
-	"version": "0.6.2",
+	"version": "0.6.3",
 	"keywords": [
 		"api",
 		"nure",

@@ -31,18 +31,32 @@ interface Schedule {
 	subject: Subject;
 }
 
-interface ScheduleFilters {
+interface GroupScheduleFilters {
 	lessonTypes: EventType[];
 	teachers: number[];
 	auditoriums: number[];
 	subjects: number[];
 }
 
-interface GetScheduleParams {
+interface TeacherScheduleFilters {
+	lessonTypes: EventType[];
+	groups: number[];
+	auditoriums: number[];
+	subjects: number[];
+}
+
+interface AuditoriumScheduleFilters {
+	lessonTypes: EventType[];
+	groups: number[];
+	teachers: number[];
+	subjects: number[];
+}
+
+interface GetScheduleParams<TFilters extends object> {
 	id: number;
 	startedAt: number;
 	endedAt: number;
-	filters?: Partial<ScheduleFilters>;
+	filters?: Partial<TFilters>;
 }
 
 type ScheduleType = "groups" | "auditoriums" | "teachers";
@@ -53,10 +67,10 @@ interface ShortSchedule {
 	type: ScheduleType;
 }
 
-interface ScheduleQueryParams {
+interface ScheduleQueryParams<T extends object> {
 	start: number;
 	end: number;
-	filters?: Partial<ScheduleFilters>;
+	filters?: Partial<T>;
 }
 
 export type {
@@ -69,4 +83,7 @@ export type {
 	ScheduleQueryParams,
 	GetScheduleParams,
 	EventType,
+	GroupScheduleFilters,
+	TeacherScheduleFilters,
+	AuditoriumScheduleFilters,
 };
