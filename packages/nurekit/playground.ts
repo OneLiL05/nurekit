@@ -6,8 +6,8 @@ const nurekit = new Nurekit();
 try {
 	const schedule = await nurekit.groups.getSchedule({
 		id: 9312468,
-		startedAt: "2024-09-01",
-		endedAt: "2024-09-07",
+		startedAt: 1725138000,
+		endedAt: 1725656400,
 	});
 
 	console.log(schedule);

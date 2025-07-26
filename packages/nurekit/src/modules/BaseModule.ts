@@ -3,21 +3,23 @@ import { getScheduleParams } from "../helpers/searchParams.js";
 import { GetScheduleParams, Schedule } from "../types/index.js";
 import { BaseModule, ApiResponse } from "../types/modules.js";
 
-export class BaseModuleImpl<T extends object> implements BaseModule<T> {
-	private readonly baseUrl: string;
+export class BaseModuleImpl<TEntity extends object, TFilters extends object>
+	implements BaseModule<TEntity, TFilters>
+{
+	protected readonly baseUrl: string;
 
 	constructor(baseUrl: string) {
 		this.baseUrl = baseUrl;
 	}
 
-	async findMany(): Promise<T[]> {
+	async findMany(): Promise<TEntity[]> {
 		const response = await fetch(this.baseUrl);
 
 		if (!response.ok) {
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<T> = await response.json();
+		const data: ApiResponse<TEntity> = await response.json();
 
 		return data.data;
 	}
@@ -27,7 +29,7 @@ export class BaseModuleImpl<T extends object> implements BaseModule<T> {
 		startedAt,
 		endedAt,
 		filters,
-	}: GetScheduleParams): Promise<Schedule[]> {
+	}: GetScheduleParams<TFilters>): Promise<Schedule[]> {
 		const params = getScheduleParams({
 			start: startedAt,
 			end: endedAt,
