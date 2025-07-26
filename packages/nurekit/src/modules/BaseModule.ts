@@ -43,9 +43,6 @@ export class BaseModuleImpl<TEntity extends object, TFilters extends object>
 		const response = await fetch(url.toString());
 
 		if (!response.ok) {
-			const a = await response.json();
-
-			console.log(a);
 			throw new NurekitError();
 		}
 
