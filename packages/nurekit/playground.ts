@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Nurekit, NurekitError } from "./dist/index.js";
+import { Nurekit, NurekitError } from "./dist";
 
 const nurekit = new Nurekit();
 

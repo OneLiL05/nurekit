@@ -6,7 +6,7 @@ import {
 	Subject,
 	Teacher,
 } from "../types/index.js";
-import { ApiResponse, GroupsModule } from "../types/modules.js";
+import { ApiResponseMultiple, GroupsModule } from "../types/modules.js";
 import { BaseModuleImpl } from "./BaseModule.js";
 
 export class GroupsModuleImpl
@@ -26,7 +26,7 @@ export class GroupsModuleImpl
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<Auditorium> = await response.json();
+		const data: ApiResponseMultiple<Auditorium> = await response.json();
 
 		return data.data;
 	}
@@ -40,7 +40,7 @@ export class GroupsModuleImpl
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<Teacher> = await response.json();
+		const data: ApiResponseMultiple<Teacher> = await response.json();
 
 		return data.data;
 	}
@@ -54,7 +54,7 @@ export class GroupsModuleImpl
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<Subject> = await response.json();
+		const data: ApiResponseMultiple<Subject> = await response.json();
 
 		return data.data;
 	}

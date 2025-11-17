@@ -6,7 +6,7 @@ import {
 	Teacher,
 	TeacherScheduleFilters,
 } from "../types/index.js";
-import { ApiResponse, TeachersModule } from "../types/modules.js";
+import { ApiResponseMultiple, TeachersModule } from "../types/modules.js";
 import { BaseModuleImpl } from "./BaseModule.js";
 
 export class TeachersModuleImpl
@@ -26,7 +26,7 @@ export class TeachersModuleImpl
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<Auditorium> = await response.json();
+		const data: ApiResponseMultiple<Auditorium> = await response.json();
 
 		return data.data;
 	}
@@ -40,7 +40,7 @@ export class TeachersModuleImpl
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<Group> = await response.json();
+		const data: ApiResponseMultiple<Group> = await response.json();
 
 		return data.data;
 	}
@@ -54,7 +54,7 @@ export class TeachersModuleImpl
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<Subject> = await response.json();
+		const data: ApiResponseMultiple<Subject> = await response.json();
 
 		return data.data;
 	}

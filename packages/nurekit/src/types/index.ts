@@ -67,23 +67,50 @@ interface ShortSchedule {
 	type: ScheduleType;
 }
 
-interface ScheduleQueryParams<T extends object> {
+interface ScheduleQueryParams {
 	start: number;
 	end: number;
-	filters?: Partial<T>;
+	filters?: Record<string, unknown>;
+}
+
+interface Link {
+	id: string;
+	label: string;
+	url: string;
+	type: EventType;
+	subjectId: number;
+	userId: string;
+}
+
+type CreateLink = Pick<Link, "label" | "url" | "type" | "subjectId">;
+
+type UpdateLink = Pick<Link, "label" | "url">;
+
+interface SharableLink {
+	id: string;
+	links: Link[];
+}
+
+interface CreateSharableLink {
+	linkIds: string[];
 }
 
 export type {
-	Teacher,
-	Group,
 	Auditorium,
-	Subject,
-	Schedule,
-	ShortSchedule,
-	ScheduleQueryParams,
-	GetScheduleParams,
-	EventType,
-	GroupScheduleFilters,
-	TeacherScheduleFilters,
 	AuditoriumScheduleFilters,
+	CreateLink,
+	EventType,
+	GetScheduleParams,
+	Group,
+	GroupScheduleFilters,
+	Link,
+	Schedule,
+	ScheduleQueryParams,
+	ShortSchedule,
+	Subject,
+	Teacher,
+	TeacherScheduleFilters,
+	UpdateLink,
+	SharableLink,
+	CreateSharableLink,
 };

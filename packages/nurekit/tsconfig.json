@@ -3,7 +3,6 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"target": "es2022",
-		"allowJs": true,
 		"resolveJsonModule": true,
 		"moduleDetection": "force",
 		"isolatedModules": true,
@@ -13,7 +12,8 @@
 		"module": "NodeNext",
 		"outDir": "dist",
 		"sourceMap": true,
-		"declaration": true
+		"declaration": true,
+		"isolatedDeclarations": true
 	},
 	"exclude": ["./playground.ts"],
 	"include": ["src"]

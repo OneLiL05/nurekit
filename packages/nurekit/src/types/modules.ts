@@ -1,18 +1,30 @@
 import {
 	Auditorium,
 	AuditoriumScheduleFilters,
+	CreateLink,
+	CreateSharableLink,
 	GetScheduleParams,
 	Group,
 	GroupScheduleFilters,
+	Link,
 	Schedule,
+	SharableLink,
 	Subject,
 	Teacher,
 	TeacherScheduleFilters,
+	UpdateLink,
 } from "./index.js";
 
-type ApiResponse<T> = {
+type ApiResponseMultiple<T> = {
 	success: true;
 	data: T[];
+	message: string;
+	error: null;
+};
+
+type ApiResponseSingle<T> = {
+	success: true;
+	data: T;
 	message: string;
 	error: null;
 };
@@ -41,10 +53,26 @@ interface TeachersModule extends BaseModule<Teacher, TeacherScheduleFilters> {
 	getSubjects: (teacherId: number) => Promise<Subject[]>;
 }
 
+interface LinksModule {
+	getUserLinks: () => Promise<Link[]>;
+	createLink: (data: CreateLink) => Promise<Link>;
+	updateLink: (linkId: string, data: UpdateLink) => Promise<Link>;
+	deleteLink: (linkId: string) => Promise<Link>;
+}
+
+interface SharableLinksModule {
+	getLink: (linkId: string) => Promise<SharableLink>;
+	createLink: (data: CreateSharableLink) => Promise<{ id: string }>;
+	acceptLink: (linkId: string) => Promise<void>;
+}
+
 export type {
-	ApiResponse,
 	AuditoriumsModule,
 	BaseModule,
 	GroupsModule,
 	TeachersModule,
+	LinksModule,
+	ApiResponseMultiple,
+	ApiResponseSingle,
+	SharableLinksModule,
 };

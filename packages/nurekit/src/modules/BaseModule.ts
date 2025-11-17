@@ -1,7 +1,7 @@
 import { NurekitError } from "../errors.js";
 import { getScheduleParams } from "../helpers/searchParams.js";
 import { GetScheduleParams, Schedule } from "../types/index.js";
-import { BaseModule, ApiResponse } from "../types/modules.js";
+import { BaseModule, ApiResponseMultiple } from "../types/modules.js";
 
 export class BaseModuleImpl<TEntity extends object, TFilters extends object>
 	implements BaseModule<TEntity, TFilters>
@@ -19,7 +19,7 @@ export class BaseModuleImpl<TEntity extends object, TFilters extends object>
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<TEntity> = await response.json();
+		const data: ApiResponseMultiple<TEntity> = await response.json();
 
 		return data.data;
 	}
@@ -46,7 +46,7 @@ export class BaseModuleImpl<TEntity extends object, TFilters extends object>
 			throw new NurekitError();
 		}
 
-		const data: ApiResponse<Schedule> = await response.json();
+		const data: ApiResponseMultiple<Schedule> = await response.json();
 
 		return data.data;
 	}
