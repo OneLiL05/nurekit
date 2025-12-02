@@ -29,6 +29,8 @@ interface Schedule {
 	groups: Group[];
 	teachers: Teacher[];
 	subject: Subject;
+	pairIndex: number;
+	pairsCount: number;
 }
 
 interface GroupScheduleFilters {
